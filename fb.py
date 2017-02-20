@@ -36,24 +36,31 @@ def parser(file):
 
     # sorts the fblines into a nested list with person, time, and message
     ordered = []
+    current = -1 # current conversation
+
     for i in range(len(fblines)):
+        if fblines[i][-20:] == '<div class="message"':
+            ordered.append([fblines[i][19:-20],[]])
+            current += 1
+
         if fblines[i][-6:] == '</span' and fblines[i][-7] != "T":
             name = fblines[i][18:-6]
             time = epoch(fblines[i + 1][18:-6])
             message = fblines[i + 4][2: -3]
             complete = [name, time, message]
-            ordered.append(complete)
+            ordered[current][1].append(complete)
 
     # ordered.sort(key = lambda x: x[1])
 
     return ordered
 
-for line in parser(filename):
-    if len(line[2]) > 2000:
+for line in parser(filename)[:50]:
+    if
         print(str(line[0]) + ':')
         print(line[1][1])
         print(line[2])
-        print()   
+        print()
+
 
 # print(max(parser(filename), key = lambda x: len(x[2]))[2])
 
