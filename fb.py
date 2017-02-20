@@ -50,16 +50,16 @@ def parser(file):
             complete = [name, time, message]
             ordered[current][1].append(complete)
 
-    # ordered.sort(key = lambda x: x[1])
 
     return ordered
 
-for line in parser(filename)[:50]:
-    if
-        print(str(line[0]) + ':')
-        print(line[1][1])
-        print(line[2])
-        print()
+for line in parser(filename):
+    if line[0] == person1 + ", " + person2 or line[0] == person2 + ", " + person1:
+        for line1 in line[1]:
+            print(str(line1[0]) + ':')
+            print(line1[1][1])
+            print(line1[2])
+            print()
 
 
 # print(max(parser(filename), key = lambda x: len(x[2]))[2])
